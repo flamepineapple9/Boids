@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://f6xoyvhhufxt"]
+
+[ext_resource type="Script" path="res://Scenes/Boid.gd" id="1_3tijs"]
+[ext_resource type="Texture2D" uid="uid://bx3jdc8cxmnxd" path="res://icon.svg" id="2_y4u28"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3a2i"]
+size = Vector3(2.11524, 0.867914, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wegad"]
+size = Vector3(3.7599, 2.78678, 3.63772)
+
+[node name="Boid" type="Area3D"]
+script = ExtResource("1_3tijs")
+
+[node name="Model" type="Sprite3D" parent="."]
+transform = Transform3D(1.61052, 0, 0, 0, -3.35643e-08, 0.997224, 0, -0.767862, -4.359e-08, 0, 0, 0)
+texture = ExtResource("2_y4u28")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_i3a2i")
+
+[node name="Vision" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="VisionBox" type="CollisionShape3D" parent="Vision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.94741, 0, 0)
+shape = SubResource("BoxShape3D_wegad")
+
+[connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
