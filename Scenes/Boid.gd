@@ -43,7 +43,8 @@ func positionMatch():
 	else:
 		return Vector2.ZERO
 
-#Inverse of the distance to closest boid if said distance is less than N. probably just normalize the vector 
+#probably will have to handle all close boids, not just the closest one. Remove boids from localBoids if they are not considered close, then use both close boids in calculation
+# return c -= position - closeBoidObj.position
 func proximity():
 	if $Vision.has_overlapping_areas():
 		var closeBoidObj = null
