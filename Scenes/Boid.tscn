@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://f6xoyvhhufxt"]
+[gd_scene load_steps=3 format=3 uid="uid://f6xoyvhhufxt"]
 
 [ext_resource type="Script" path="res://Scenes/Boid.gd" id="1_3tijs"]
 
@@ -6,22 +6,22 @@
 radius = 12.0
 height = 48.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwtkp"]
-size = Vector2(104, 106)
-
 [node name="Boid" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_3tijs")
 
 [node name="Sprite" type="Polygon2D" parent="."]
+rotation = 1.57079
 polygon = PackedVector2Array(-12, -24, 12, -24, 12, 24, -12, 24)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
+rotation = 1.57079
 shape = SubResource("CapsuleShape2D_g0q1t")
 
 [node name="Vision" type="Area2D" parent="."]
+rotation = 1.57079
 collision_layer = 2
 
-[node name="VisionBox" type="CollisionShape2D" parent="Vision"]
-position = Vector2(0, -80)
-shape = SubResource("RectangleShape2D_rwtkp")
+[node name="VisionBox" type="CollisionPolygon2D" parent="Vision"]
+position = Vector2(6.27438e-06, -1)
+polygon = PackedVector2Array(15.9998, 24.0001, 55.9999, 17.0004, 96.0017, -271.999, -95.9983, -272.001, -56.0001, 16.9996, -16.0002, 23.9999, -15.9998, -24.0001, 16.0002, -23.9999)

@@ -1,11 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://co6p8x760jht8"]
 
-[ext_resource type="PackedScene" uid="uid://f6xoyvhhufxt" path="res://Scenes/Boid.tscn" id="1_af0ws"]
+[ext_resource type="Script" path="res://Scenes/flockSpawner.gd" id="1_hvggl"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Boid" parent="." instance=ExtResource("1_af0ws")]
-position = Vector2(306, 117)
-
-[node name="Boid2" parent="." instance=ExtResource("1_af0ws")]
-position = Vector2(306, 232)
+[node name="flockSpawner" type="Node2D" parent="."]
+script = ExtResource("1_hvggl")
