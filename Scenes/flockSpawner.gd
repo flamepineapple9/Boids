@@ -4,7 +4,7 @@ var boidLoad = preload("res://Scenes/Boid.tscn")
 var random = RandomNumberGenerator.new()
 
 var boidCount: int = 0
-var boidMax: int = 35
+var boidMax: int = 100
 
 var start: bool = false
 

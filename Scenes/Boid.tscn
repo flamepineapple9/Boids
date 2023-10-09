@@ -3,16 +3,17 @@
 [ext_resource type="Script" path="res://Scenes/Boid.gd" id="1_3tijs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0q1t"]
-radius = 12.0
-height = 48.0
+radius = 7.5
+height = 40.0
 
 [node name="Boid" type="Area2D"]
+scale = Vector2(0.4, 0.4)
 collision_mask = 2
 script = ExtResource("1_3tijs")
 
 [node name="Sprite" type="Polygon2D" parent="."]
-rotation = 1.57079
-polygon = PackedVector2Array(-12, -24, 12, -24, 12, 24, -12, 24)
+scale = Vector2(0.407126, 1824.43)
+polygon = PackedVector2Array(61.406, 0, -55.2654, -0.00685146, -36.8436, 0, -55.2654, 0.00685146)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 rotation = 1.57079
@@ -24,4 +25,4 @@ collision_layer = 2
 
 [node name="VisionBox" type="CollisionPolygon2D" parent="Vision"]
 position = Vector2(6.27438e-06, -1)
-polygon = PackedVector2Array(15.9998, 24.0001, 55.9999, 17.0004, 96.0017, -271.999, -95.9983, -272.001, -56.0001, 16.9996, -16.0002, 23.9999, -15.9998, -24.0001, 16.0002, -23.9999)
+polygon = PackedVector2Array(15.9998, 24.0001, 55.9999, 17.0004, 128.002, -270.999, -127.998, -271.001, -56.0001, 16.9996, -16.0002, 23.9999, -15.9998, -24.0001, 16.0002, -23.9999)
