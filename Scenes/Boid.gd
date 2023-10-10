@@ -17,7 +17,7 @@ func _physics_process(delta):
 	rotation = vel.angle()
 	
 	#add all rule terms to vel, it will be normalized later to not increase the speed of boids
-	vel += velocityMatch() + positionMatch() + proximity()
+	vel += velocityMatch() + positionMatch() + avoidance()
 	
 	position += vel.normalized() * speed * delta
 	
@@ -69,6 +69,25 @@ func proximity():
 			c -= closeBoidObj.position - position
 	
 	return c.normalized()/2
+
+func avoidance():
+	
+	if $Vision.has_overlapping_areas():
+		var localBoids = $Vision.get_overlapping_areas()
+		var closeBoids = []
+		
+		#pushes ALL close boids to new array, closeBoids
+		for i in localBoids.size():
+			if position.distance_to(localBoids[i].position) < 75 * startScale:
+				closeBoids.push_front(localBoids[i])
+		
+		
+		var avgDist = Vector2.ZERO
+		for n in closeBoids.size():
+			avgDist +=  position - closeBoids[n].position
+			
+		return avgDist.normalized()
+	return Vector2.ZERO
 
 #replace with boundary(), should be pretty simple (clueless)
 func screenWrap():
