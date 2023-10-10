@@ -1,8 +1,8 @@
 extends Area2D
 
-var startScale = .6
-var vel: Vector2 = Vector2(0,0)
-var speed: int = 100 * startScale
+var startScale = .4
+var vel: Vector2 = Vector2.ZERO
+var speed: int = 1000 * startScale
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,11 +18,11 @@ func _physics_process(delta):
 	rotation = vel.angle()
 	
 	#add all rule terms to vel, it will be normalized later to not increase the speed of boids
-	vel += avoidance() + velocityMatch() + positionMatch()
+	vel +=  velocityMatch() + positionMatch() + avoidance() + boundary()
 	vel = vel.normalized()
 	position += vel * speed * delta
 	
-	screenWrap()
+#	screenWrap()
 
 #this one def works LMFAO no it does NOT. goes to fucking infinity if the /85 isnt there 
 #maybe normalizing velocity every frame before adding it to position fixed things, because vel will not go to infinity and beyond
@@ -34,7 +34,7 @@ func velocityMatch():
 		var avgVel: Vector2 = Vector2(0,0)
 		for i in localBoids.size():
 			avgVel += localBoids[i].vel
-		c = avgVel/localBoids.size()/85
+		c = avgVel/localBoids.size()/14
 	
 	return c
 
@@ -48,48 +48,26 @@ func positionMatch():
 		for i in localBoids.size():
 			avgPos += localBoids[i].position
 		avgPos /= localBoids.size()
-		c = position.direction_to(avgPos)
+		c = position.direction_to(avgPos)/65
 	
 	return c
 
-#currently unused
-func proximity():
-	var c = Vector2.ZERO
-	
-	if $Vision.has_overlapping_areas():
-		var closeBoidObj = null
-		
-		#arbitrary large number
-		var closeBoid = Vector2(1000000,1000000)
-		var localBoids = $Vision.get_overlapping_areas()
-		for i in localBoids.size():
-			if position.distance_to(localBoids[i].position) < position.distance_to(closeBoid):
-				closeBoid = localBoids[i].position
-				closeBoidObj = localBoids[i]
-		if position.distance_to(closeBoid) < 75 * startScale:
-			c -= closeBoidObj.position - position
-	
-	return c.normalized()/2
-
 func avoidance():
-	
 	if $Vision.has_overlapping_areas():
 		var localBoids = $Vision.get_overlapping_areas()
 		var closeBoids = []
 		
 		#pushes ALL close boids to new array, closeBoids
 		for i in localBoids.size():
-			if position.distance_to(localBoids[i].position) < 75 * startScale:
+			if position.distance_to(localBoids[i].position) < 100 * startScale:
 				closeBoids.push_front(localBoids[i])
 		
 		
 		var avgDist = Vector2.ZERO
 		for n in closeBoids.size():
-			#This equation is not doing what I want it to be doing
-			#Need to return average distance away, negative
 			avgDist +=  position - closeBoids[n].position
 			
-		return avgDist
+		return avgDist.normalized()/6
 	return Vector2.ZERO
 
 #replace with boundary(), should be pretty simple (clueless)
@@ -102,3 +80,19 @@ func screenWrap():
 		position.y = get_viewport_rect().size.y
 	if position.y > get_viewport_rect().size.y:
 		position.y = 0
+
+func boundary():
+	var c = Vector2.ZERO
+	var steeringForce = 1
+	var margin = 100
+	
+	if position.x < margin:
+		c.x += steeringForce 
+	if position.y < margin:
+		c.y += steeringForce
+	if position.x > get_viewport_rect().size.x - margin:
+		c.x += -steeringForce
+	if position.y > get_viewport_rect().size.y - margin:
+		c.y += -steeringForce
+	
+	return c/5
