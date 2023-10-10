@@ -10,7 +10,8 @@ func _ready():
 	scale = Vector2(startScale, startScale)
 
 
-# 
+# Vel just keeps getting added to and keeps getting bigger,so as simulation continues, new changes have less and less effect as they proportionally
+# affect the vel.normalized() calculation more and more
 func _physics_process(delta):
 	
 	#just visual as far as im aware, points boids in direction theyre moving
@@ -18,12 +19,13 @@ func _physics_process(delta):
 	
 	#add all rule terms to vel, it will be normalized later to not increase the speed of boids
 	vel += avoidance() + velocityMatch() + positionMatch()
-	
-	position += vel.normalized() * speed * delta
+	vel = vel.normalized()
+	position += vel * speed * delta
 	
 	screenWrap()
 
 #this one def works LMFAO no it does NOT. goes to fucking infinity if the /85 isnt there 
+#maybe normalizing velocity every frame before adding it to position fixed things, because vel will not go to infinity and beyond
 func velocityMatch():
 	var c = Vector2.ZERO
 	
