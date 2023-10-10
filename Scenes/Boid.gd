@@ -38,7 +38,7 @@ func velocityMatch():
 	
 	return c
 
-#everything sucks, "expected behavior" from multiplying the return by 90 for some reason :clueless:
+#might need to change direction_to as it normalizes the vector. thats bad (apparently)
 func positionMatch():
 	var c = Vector2.ZERO
 	
@@ -85,6 +85,8 @@ func avoidance():
 		
 		var avgDist = Vector2.ZERO
 		for n in closeBoids.size():
+			#This equation is not doing what I want it to be doing
+			#Need to return average distance away, negative
 			avgDist +=  position - closeBoids[n].position
 			
 		return avgDist
