@@ -2,7 +2,7 @@ extends Area2D
 
 var startScale = .6
 var vel: Vector2 = Vector2(0,0)
-var speed: int = 600 * startScale
+var speed: int = 100 * startScale
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +17,13 @@ func _physics_process(delta):
 	rotation = vel.angle()
 	
 	#add all rule terms to vel, it will be normalized later to not increase the speed of boids
-	vel += velocityMatch() + positionMatch() + avoidance()
+	vel += avoidance() + velocityMatch() + positionMatch()
 	
 	position += vel.normalized() * speed * delta
 	
 	screenWrap()
 
-#this one def works
+#this one def works LMFAO no it does NOT. goes to fucking infinity if the /85 isnt there 
 func velocityMatch():
 	var c = Vector2.ZERO
 	
@@ -36,22 +36,21 @@ func velocityMatch():
 	
 	return c
 
-#pretty sure this one works
+#everything sucks, "expected behavior" from multiplying the return by 90 for some reason :clueless:
 func positionMatch():
 	var c = Vector2.ZERO
 	
 	var localBoids = $Vision.get_overlapping_areas()
-	if(localBoids.size() > 0):
-		var avgPos: Vector2 = Vector2(0,0)
+	if localBoids.size() > 0:
+		var avgPos: Vector2 = Vector2.ZERO
 		for i in localBoids.size():
 			avgPos += localBoids[i].position
 		avgPos /= localBoids.size()
-		c = position.direction_to(avgPos)/25
+		c = position.direction_to(avgPos)
 	
 	return c
 
-#probably will have to handle all close boids, not just the closest one. Remove boids from localBoids if they are not considered close, then use both close boids in calculation
-# return c -= position - closeBoidObj.position
+#currently unused
 func proximity():
 	var c = Vector2.ZERO
 	
@@ -86,7 +85,7 @@ func avoidance():
 		for n in closeBoids.size():
 			avgDist +=  position - closeBoids[n].position
 			
-		return avgDist.normalized()
+		return avgDist
 	return Vector2.ZERO
 
 #replace with boundary(), should be pretty simple (clueless)

@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://f6xoyvhhufxt"]
+[gd_scene load_steps=2 format=3 uid="uid://f6xoyvhhufxt"]
 
 [ext_resource type="Script" path="res://Scenes/Boid.gd" id="1_3tijs"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0q1t"]
-radius = 7.5
-height = 40.0
 
 [node name="Boid" type="Area2D"]
 scale = Vector2(0.4, 0.4)
@@ -15,14 +11,14 @@ script = ExtResource("1_3tijs")
 scale = Vector2(0.407126, 1824.43)
 polygon = PackedVector2Array(61.406, 0, -55.2654, -0.00685146, -36.8436, 0, -55.2654, 0.00685146)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionPolygon2D" parent="."]
 rotation = 1.57079
-shape = SubResource("CapsuleShape2D_g0q1t")
+polygon = PackedVector2Array(-12.5001, 22.4999, 0.00015686, -25, 12.4999, 22.5001, -9.41157e-05, 15)
 
 [node name="Vision" type="Area2D" parent="."]
 rotation = 1.57079
 collision_layer = 2
 
 [node name="VisionBox" type="CollisionPolygon2D" parent="Vision"]
-position = Vector2(6.27438e-06, -1)
-polygon = PackedVector2Array(9.99985, 23.5001, 55.9999, 17.0004, 128.002, -270.999, -127.998, -271.001, -56.0001, 16.9996, -10.0001, 23.4999, -7.49986, -21.5, 7.50013, -21.5)
+scale = Vector2(2.02, 2.02)
+polygon = PackedVector2Array(-7.43483, 11.2032, -0.773436, -12.5309, 1.0168, -12.5091, 7.52189, 11.125, 0.605332, 14.468, -0.00101018, 161, 119.999, 121.001, 160, 1.001, 120.001, -118.999, 0.000997626, -159, -119.999, -119.001, -160, 0.998996, -120.001, 120.999, -1.39727, 161.054, -1.58744, 14.3705)
