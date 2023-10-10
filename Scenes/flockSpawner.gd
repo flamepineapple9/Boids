@@ -4,7 +4,7 @@ var boidLoad = preload("res://Scenes/Boid.tscn")
 
 var random = RandomNumberGenerator.new()
 
-var boidMax: int = 100
+var boids: int = 100
 
 var start: bool = false
 
@@ -15,7 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if Input.is_action_just_pressed("start"):
-		for i in range(boidMax):
+		for i in range(boids):
 			var boidInstance = boidLoad.instantiate()
 			boidInstance.position.x = randi_range(0,get_viewport_rect().size.x)
 			boidInstance.position.y = randi_range(0,get_viewport_rect().size.y)
