@@ -2,9 +2,7 @@ extends Node2D
 
 var boidLoad = preload("res://Scenes/Boid.tscn")
 
-var random = RandomNumberGenerator.new()
-
-var boids: int = 100
+var boids: int = 10
 
 var start: bool = false
 
@@ -21,3 +19,4 @@ func _physics_process(delta):
 			boidInstance.position.y = randi_range(0,get_viewport_rect().size.y)
 			boidInstance.rotation_degrees = randf_range(-360,360)
 			get_parent().add_child(boidInstance)
+			GlobalVars.curBoids += 1
