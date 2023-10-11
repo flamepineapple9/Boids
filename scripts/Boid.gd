@@ -48,6 +48,7 @@ func positionMatch(localBoids):
 	
 	return c
 
+#Get rid of closeBoids. just iterate through localBoids and check distance, if close, add vel to avgVel.
 func avoidance(localBoids):
 	if localBoids.size() > 0:
 		var closeBoids = []
