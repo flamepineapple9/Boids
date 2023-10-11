@@ -1,8 +1,9 @@
 extends Area2D
 
-var startScale = .4
+var startScale = .2
 var vel: Vector2 = Vector2.ZERO
 var speed: int = 1000 * startScale
+var localBoids: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +14,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	var localBoids = $Vision.get_overlapping_areas()
-	
+	localBoids = $Vision.get_overlapping_areas()
 	#just visual as far as im aware, points boids in direction theyre moving
 	rotation = vel.angle()
 	
@@ -51,20 +51,15 @@ func positionMatch(localBoids):
 #Get rid of closeBoids. just iterate through localBoids and check distance, if close, add vel to avgVel.
 func avoidance(localBoids):
 	if localBoids.size() > 0:
-		var closeBoids = []
+		var avgDist = Vector2.ZERO
 		
 		#pushes ALL close boids to new array, closeBoids
 		#tiny optimization, pushing to front of array is a slower operation than pushing to back. doesnt really matter because closeBoids is a pretty small array.
 		for i in localBoids.size():
-			if position.distance_to(localBoids[i].position) < 100 * startScale:
-				closeBoids.push_back(localBoids[i])
+			if position.distance_to(localBoids[i].position) < 75 * startScale:
+				avgDist +=  position - localBoids[i].position
 		
-		
-		var avgDist = Vector2.ZERO
-		for n in closeBoids.size():
-			avgDist +=  position - closeBoids[n].position
-			
-		return avgDist.normalized()/6
+		return 3*avgDist.normalized()/5
 	return Vector2.ZERO
 
 func boundary():

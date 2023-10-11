@@ -17,7 +17,6 @@ polygon = PackedVector2Array(61.406, 0, -55.2654, -0.00685146, -36.8436, 0, -55.
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0.00602627, 5.90682e-05)
 rotation = 1.57079
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_otun3")
 
 [node name="Vision" type="Area2D" parent="."]
