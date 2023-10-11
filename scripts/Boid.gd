@@ -53,9 +53,10 @@ func avoidance(localBoids):
 		var closeBoids = []
 		
 		#pushes ALL close boids to new array, closeBoids
+		#tiny optimization, pushing to front of array is a slower operation than pushing to back. doesnt really matter because closeBoids is a pretty small array.
 		for i in localBoids.size():
 			if position.distance_to(localBoids[i].position) < 100 * startScale:
-				closeBoids.push_front(localBoids[i])
+				closeBoids.push_back(localBoids[i])
 		
 		
 		var avgDist = Vector2.ZERO
