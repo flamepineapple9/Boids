@@ -25,7 +25,7 @@ func _physics_process(delta):
 
 
 func velocityMatch(localBoids):
-	var c = Vector2.ZERO
+	var c: Vector2 = Vector2.ZERO
 	
 	if localBoids.size() > 0:
 		var avgVel: Vector2 = Vector2(0,0)
@@ -37,7 +37,7 @@ func velocityMatch(localBoids):
 
 #might need to change direction_to as it normalizes the vector. thats bad (apparently)
 func positionMatch(localBoids):
-	var c = Vector2.ZERO
+	var c: Vector2 = Vector2.ZERO
 	
 	if localBoids.size() > 0:
 		var avgPos: Vector2 = Vector2.ZERO
@@ -67,9 +67,9 @@ func avoidance(localBoids):
 	return Vector2.ZERO
 
 func boundary():
-	var c = Vector2.ZERO
-	var steeringForce = 1
-	var margin = 100
+	var c: Vector2 = Vector2.ZERO
+	var steeringForce: int = 1
+	var margin: int = 100
 	
 	if position.x < margin:
 		c.x += steeringForce 
