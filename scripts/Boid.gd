@@ -1,6 +1,6 @@
 extends Area2D
 
-var startScale = .2
+var startScale = .25
 var vel: Vector2 = Vector2.ZERO
 var speed: int = 1000 * startScale
 var localBoids: Array = []
@@ -53,8 +53,6 @@ func avoidance(localBoids):
 	if localBoids.size() > 0:
 		var avgDist = Vector2.ZERO
 		
-		#pushes ALL close boids to new array, closeBoids
-		#tiny optimization, pushing to front of array is a slower operation than pushing to back. doesnt really matter because closeBoids is a pretty small array.
 		for i in localBoids.size():
 			if position.distance_to(localBoids[i].position) < 75 * startScale:
 				avgDist +=  position - localBoids[i].position
