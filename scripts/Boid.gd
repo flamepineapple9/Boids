@@ -1,6 +1,6 @@
 extends Area2D
 
-var startScale = .25
+var startScale: float = .25
 var vel: Vector2 = Vector2.ZERO
 var speed: int = 1000 * startScale
 var localBoids: Array = []
