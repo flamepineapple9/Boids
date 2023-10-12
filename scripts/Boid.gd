@@ -5,6 +5,8 @@ var vel: Vector2 = Vector2.ZERO
 var speed: int = 1000 * startScale
 var localBoids: Array = []
 
+var c: Vector2 = Vector2.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	vel = Vector2.RIGHT.rotated(rotation)
@@ -25,7 +27,7 @@ func _physics_process(delta):
 
 
 func velocityMatch(localBoids):
-	var c: Vector2 = Vector2.ZERO
+	c = Vector2.ZERO
 	
 	if localBoids.size() > 0:
 		var avgVel: Vector2 = Vector2(0,0)
@@ -37,7 +39,7 @@ func velocityMatch(localBoids):
 
 #might need to change direction_to as it normalizes the vector. thats bad (apparently)
 func positionMatch(localBoids):
-	var c: Vector2 = Vector2.ZERO
+	c = Vector2.ZERO
 	
 	if localBoids.size() > 0:
 		var avgPos: Vector2 = Vector2.ZERO
@@ -50,6 +52,7 @@ func positionMatch(localBoids):
 
 #Get rid of closeBoids. just iterate through localBoids and check distance, if close, add vel to avgVel.
 func avoidance(localBoids):
+	c = Vector2.ZERO
 	if localBoids.size() > 0:
 		var avgDist = Vector2.ZERO
 		
@@ -57,11 +60,12 @@ func avoidance(localBoids):
 			if position.distance_to(localBoids[i].position) < 75 * startScale:
 				avgDist +=  position - localBoids[i].position
 		
-		return 3*avgDist.normalized()/5
-	return Vector2.ZERO
+		c = 3*avgDist.normalized()/5
+	
+	return c
 
 func boundary():
-	var c: Vector2 = Vector2.ZERO
+	c = Vector2.ZERO
 	var steeringForce: int = 1
 	var margin: int = 100
 	
