@@ -37,7 +37,7 @@ func velocityMatch(localBoids):
 	
 	return c
 
-#might need to change direction_to as it normalizes the vector. thats bad (apparently)
+
 func positionMatch(localBoids):
 	c = Vector2.ZERO
 	
@@ -50,7 +50,7 @@ func positionMatch(localBoids):
 	
 	return c
 
-#Get rid of closeBoids. just iterate through localBoids and check distance, if close, add vel to avgVel.
+
 func avoidance(localBoids):
 	c = Vector2.ZERO
 	if localBoids.size() > 0:
