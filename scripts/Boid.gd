@@ -54,7 +54,7 @@ func positionMatch(localBoids):
 func avoidance(localBoids):
 	c = Vector2.ZERO
 	if localBoids.size() > 0:
-		var avgDist = Vector2.ZERO
+		var avgDist: Vector2 = Vector2.ZERO
 		
 		for i in localBoids.size():
 			if position.distance_to(localBoids[i].position) < 75 * startScale:
