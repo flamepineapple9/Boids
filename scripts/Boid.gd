@@ -12,7 +12,7 @@ func _ready():
 	vel = Vector2.RIGHT.rotated(rotation)
 	scale = Vector2(startScale, startScale)
 	
-	$Sprite.color = Color8(0,200,randi_range(75,255))
+	$Sprite.color = Color8(0,180,randi_range(75,255))
 
 
 func _physics_process(delta):
