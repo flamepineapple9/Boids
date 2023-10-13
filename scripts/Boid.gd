@@ -21,7 +21,7 @@ func _physics_process(delta):
 	rotation = vel.angle()
 	
 	#add all rule terms to vel, it will be normalized later to not increase the speed of boids
-	vel +=  velocityMatch(localBoids) + positionMatch(localBoids) + avoidance(localBoids) + boundary()
+	vel +=  velocityMatch(localBoids) + positionMatch(localBoids) + avoidance(localBoids) + boundary() + mouseAvoid()
 	vel = vel.normalized()
 	position += vel * speed * delta
 
@@ -79,3 +79,13 @@ func boundary():
 		c.y += -steeringForce
 	
 	return c/10
+
+#Will probably need to scale it's intensity, likely too strong right now
+func mouseAvoid():
+	c = Vector2.ZERO
+
+	var mousePos: Vector2 = get_viewport().get_mouse_position()
+	if position.distance_to(mousePos) < 200:
+		c -= (position - mousePos).normalized()
+
+	return c
