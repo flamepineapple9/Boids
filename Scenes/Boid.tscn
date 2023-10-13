@@ -20,9 +20,27 @@ rotation = 1.57079
 shape = SubResource("RectangleShape2D_otun3")
 
 [node name="Vision" type="Area2D" parent="."]
+visible = false
 rotation = 1.57079
 collision_layer = 2
 
 [node name="VisionBox" type="CollisionPolygon2D" parent="Vision"]
 scale = Vector2(1.3, 1.3)
 polygon = PackedVector2Array(-15.3847, 15.3845, 0.000144793, -23.0769, 15.3845, 15.3847, 30.7691, 15.3848, 123.078, -184.615, 0.00154446, -246.154, -123.076, -184.616, -30.7693, 15.3844)
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="RayCast" type="RayCast2D" parent="Rays"]
+scale = Vector2(1, 1)
+target_position = Vector2(83.28, -34.7613)
+collision_mask = 8
+
+[node name="RayCast2" type="RayCast2D" parent="Rays"]
+scale = Vector2(1, 1)
+target_position = Vector2(100, 0)
+collision_mask = 8
+
+[node name="RayCast3" type="RayCast2D" parent="Rays"]
+scale = Vector2(1, 1)
+target_position = Vector2(83.28, 34.761)
+collision_mask = 8

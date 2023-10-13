@@ -60,7 +60,7 @@ func avoidance(localBoids):
 			if position.distance_to(localBoids[i].position) < 75 * startScale:
 				avgDist +=  position - localBoids[i].position
 		
-		c = 3*avgDist.normalized()/5
+		c = 2*avgDist.normalized()/5
 	
 	return c
 
@@ -80,12 +80,13 @@ func boundary():
 	
 	return c/10
 
-#Will probably need to scale it's intensity, likely too strong right now
+
 func mouseAvoid():
 	c = Vector2.ZERO
 
 	var mousePos: Vector2 = get_viewport().get_mouse_position()
-	if position.distance_to(mousePos) < 200:
-		c -= (position - mousePos).normalized()
+	if position.distance_to(mousePos) < 150:
+		c = (position - mousePos).normalized()
 
-	return c
+	return c/5
+	
