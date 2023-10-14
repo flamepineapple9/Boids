@@ -7,6 +7,7 @@ size = Vector2(10.6249, 30.234)
 
 [node name="Boid" type="Area2D"]
 scale = Vector2(0.4, 0.4)
+collision_layer = 129
 collision_mask = 2
 script = ExtResource("1_8jj53")
 
@@ -31,16 +32,31 @@ polygon = PackedVector2Array(-15.3847, 15.3845, 0.000144793, -23.0769, 15.3845, 
 [node name="Rays" type="Node2D" parent="."]
 
 [node name="RayCast" type="RayCast2D" parent="Rays"]
-scale = Vector2(1, 1)
-target_position = Vector2(83.28, -34.7613)
+target_position = Vector2(50, -50)
 collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="RayCast2" type="RayCast2D" parent="Rays"]
 scale = Vector2(1, 1)
-target_position = Vector2(100, 0)
+target_position = Vector2(130, -20)
 collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="RayCast3" type="RayCast2D" parent="Rays"]
-scale = Vector2(1, 1)
-target_position = Vector2(83.28, 34.761)
+target_position = Vector2(160, 20)
 collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="RayCast4" type="RayCast2D" parent="Rays"]
+target_position = Vector2(50, 60)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

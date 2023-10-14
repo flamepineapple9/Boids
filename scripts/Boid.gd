@@ -21,9 +21,10 @@ func _physics_process(delta):
 	rotation = vel.angle()
 	
 	#add all rule terms to vel, it will be normalized later to not increase the speed of boids
-	vel +=  velocityMatch(localBoids) + positionMatch(localBoids) + avoidance(localBoids) + boundary() + mouseAvoid()
+	vel +=  velocityMatch(localBoids) + positionMatch(localBoids) + avoidance(localBoids) + boundary() + mouseAvoid() + obstacle()
 	vel = vel.normalized()
 	position += vel * speed * delta
+	
 
 
 func velocityMatch(localBoids):
@@ -37,7 +38,6 @@ func velocityMatch(localBoids):
 	
 	return c
 
-
 func positionMatch(localBoids):
 	c = Vector2.ZERO
 	
@@ -49,7 +49,6 @@ func positionMatch(localBoids):
 		c = position.direction_to(avgPos)/65
 	
 	return c
-
 
 func avoidance(localBoids):
 	c = Vector2.ZERO
@@ -80,7 +79,6 @@ func boundary():
 	
 	return c/10
 
-
 func mouseAvoid():
 	c = Vector2.ZERO
 
@@ -89,4 +87,20 @@ func mouseAvoid():
 		c = (position - mousePos).normalized()
 
 	return c/5
+
+func obstacle():
+	c = Vector2.ZERO
 	
+	var castAngle = ($Rays/RayCast2.target_position - $Rays/RayCast2.position).angle()
+	
+	if $Rays/RayCast.is_colliding():
+		c += ($Rays/RayCast.position - $Rays/RayCast.target_position).rotated(rotation)
+	if $Rays/RayCast2.is_colliding():
+		c += ($Rays/RayCast2.position - $Rays/RayCast2.target_position).rotated(rotation)
+	if $Rays/RayCast3.is_colliding():
+		c += ($Rays/RayCast3.position - $Rays/RayCast3.target_position).rotated(rotation)
+	if $Rays/RayCast4.is_colliding():
+		c += ($Rays/RayCast4.position - $Rays/RayCast4.target_position).rotated(rotation)
+	
+	return c/350
+

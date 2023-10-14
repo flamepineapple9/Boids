@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://co6p8x760jht8"]
+[gd_scene load_steps=4 format=3 uid="uid://co6p8x760jht8"]
 
 [ext_resource type="PackedScene" uid="uid://sctgbhlvut3f" path="res://Scenes/UI.tscn" id="1_h8k0h"]
 [ext_resource type="Script" path="res://scripts/FlockSpawner.gd" id="2_3dd4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23jxf"]
+size = Vector2(160, 160)
 
 [node name="Main" type="Node2D"]
 
@@ -9,3 +12,20 @@
 
 [node name="flockSpawner" type="Node2D" parent="."]
 script = ExtResource("2_3dd4g")
+
+[node name="Obstacles" type="Node2D" parent="flockSpawner"]
+
+[node name="Square" type="Area2D" parent="flockSpawner/Obstacles"]
+position = Vector2(904, 536)
+scale = Vector2(6.35629, 1.4795)
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square"]
+shape = SubResource("RectangleShape2D_23jxf")
+
+[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square"]
+color = Color(0.203922, 0.203922, 0.203922, 1)
+polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
+
+[connection signal="area_entered" from="flockSpawner/Obstacles/Square" to="flockSpawner" method="_on_square_area_entered"]
