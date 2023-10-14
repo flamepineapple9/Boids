@@ -7,6 +7,7 @@ var localBoids: Array = []
 
 var c: Vector2 = Vector2.ZERO
 
+#test
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	vel = Vector2.RIGHT.rotated(rotation)
