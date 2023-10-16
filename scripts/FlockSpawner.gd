@@ -4,6 +4,8 @@ var boidLoad = preload("res://Scenes/Boid.tscn")
 
 var boids: int = 250
 var start: bool = false
+var pos: Vector2 = Vector2.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -13,9 +15,11 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_just_pressed("start"):
 		for i in range(boids):
+			pos = Vector2(randi_range(0,get_viewport_rect().size.x), randi_range(0,get_viewport_rect().size.y))
+			while $spawnRect.has_point(pos):
+				pos = Vector2(randi_range(0,get_viewport_rect().size.x), randi_range(0,get_viewport_rect().size.y))
 			var boidInstance = boidLoad.instantiate()
-			boidInstance.position.x = randi_range(0,get_viewport_rect().size.x)
-			boidInstance.position.y = randi_range(0,get_viewport_rect().size.y)
+			boidInstance.position = pos
 			boidInstance.rotation_degrees = randf_range(-360,360)
 			get_parent().add_child(boidInstance)
 			GlobalVars.curBoids += 1
@@ -23,11 +27,9 @@ func _physics_process(delta):
 
 #Deletes boids if they spawn in the obstacle, then spawns another to replace it 
 func _on_square_area_entered(area):
-	GlobalVars.curBoids -= 1
 	var boidInstance = boidLoad.instantiate()
 	boidInstance.position.x = randi_range(0,get_viewport_rect().size.x)
 	boidInstance.position.y = randi_range(0,get_viewport_rect().size.y)
 	boidInstance.rotation_degrees = randf_range(-360,360)
 	get_parent().add_child(boidInstance)
-	GlobalVars.curBoids += 1
 	area.queue_free()
