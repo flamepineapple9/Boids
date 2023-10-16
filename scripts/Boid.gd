@@ -2,7 +2,7 @@ extends Area2D
 
 var startScale: float = .25
 var vel: Vector2 = Vector2.ZERO
-var speed: int = 1000 * startScale
+var speed: int = 600 * startScale
 var localBoids: Array = []
 
 var c: Vector2 = Vector2.ZERO
@@ -102,5 +102,5 @@ func obstacle():
 	if $Rays/RayCast4.is_colliding():
 		c += ($Rays/RayCast4.position - $Rays/RayCast4.target_position).rotated(rotation)
 	
-	return c/350
+	return c/400
 

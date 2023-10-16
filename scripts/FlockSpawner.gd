@@ -2,7 +2,7 @@ extends Node2D
 
 var boidLoad = preload("res://Scenes/Boid.tscn")
 
-var boids: int = 250
+var boids: int = 150
 var start: bool = false
 var pos: Vector2 = Vector2.ZERO
 
@@ -16,8 +16,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("start"):
 		for i in range(boids):
 			pos = Vector2(randi_range(0,get_viewport_rect().size.x), randi_range(0,get_viewport_rect().size.y))
-			while $spawnRect.has_point(pos):
-				pos = Vector2(randi_range(0,get_viewport_rect().size.x), randi_range(0,get_viewport_rect().size.y))
+#			while $spawnRect.has_point(pos):
+#				pos = Vector2(randi_range(0,get_viewport_rect().size.x), randi_range(0,get_viewport_rect().size.y))
 			var boidInstance = boidLoad.instantiate()
 			boidInstance.position = pos
 			boidInstance.rotation_degrees = randf_range(-360,360)

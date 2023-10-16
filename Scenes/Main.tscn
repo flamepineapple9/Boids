@@ -16,16 +16,77 @@ script = ExtResource("2_3dd4g")
 [node name="Obstacles" type="Node2D" parent="flockSpawner"]
 
 [node name="Square" type="Area2D" parent="flockSpawner/Obstacles"]
-position = Vector2(904, 536)
-scale = Vector2(6.35629, 1.4795)
+position = Vector2(754, 425)
+scale = Vector2(2.19629, 1.4795)
 collision_layer = 8
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square"]
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_23jxf")
 
 [node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square"]
 color = Color(0.203922, 0.203922, 0.203922, 1)
 polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
 
+[node name="Square2" type="Area2D" parent="flockSpawner/Obstacles"]
+position = Vector2(383, 748)
+scale = Vector2(2.19629, 1.4795)
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square2"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23jxf")
+
+[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square2"]
+color = Color(0.203922, 0.203922, 0.203922, 1)
+polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
+
+[node name="Square3" type="Area2D" parent="flockSpawner/Obstacles"]
+position = Vector2(258, 259)
+scale = Vector2(2.19629, 1.4795)
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square3"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23jxf")
+
+[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square3"]
+color = Color(0.203922, 0.203922, 0.203922, 1)
+polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
+
+[node name="Square4" type="Area2D" parent="flockSpawner/Obstacles"]
+position = Vector2(1286, 302)
+scale = Vector2(2.19629, 1.4795)
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square4"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23jxf")
+
+[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square4"]
+color = Color(0.203922, 0.203922, 0.203922, 1)
+polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
+
+[node name="Square5" type="Area2D" parent="flockSpawner/Obstacles"]
+position = Vector2(1211, 694)
+scale = Vector2(2.19629, 1.4795)
+collision_layer = 8
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square5"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_23jxf")
+
+[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square5"]
+color = Color(0.203922, 0.203922, 0.203922, 1)
+polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
+
 [connection signal="area_entered" from="flockSpawner/Obstacles/Square" to="flockSpawner" method="_on_square_area_entered"]
+[connection signal="area_entered" from="flockSpawner/Obstacles/Square2" to="flockSpawner" method="_on_square_area_entered"]
+[connection signal="area_entered" from="flockSpawner/Obstacles/Square3" to="flockSpawner" method="_on_square_area_entered"]
+[connection signal="area_entered" from="flockSpawner/Obstacles/Square4" to="flockSpawner" method="_on_square_area_entered"]
+[connection signal="area_entered" from="flockSpawner/Obstacles/Square5" to="flockSpawner" method="_on_square_area_entered"]

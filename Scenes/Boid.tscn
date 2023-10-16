@@ -32,29 +32,25 @@ polygon = PackedVector2Array(-15.3847, 15.3845, 0.000144793, -23.0769, 15.3845, 
 [node name="Rays" type="Node2D" parent="."]
 
 [node name="RayCast" type="RayCast2D" parent="Rays"]
-target_position = Vector2(50, -50)
+target_position = Vector2(20, -80)
 collision_mask = 8
-hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCast2" type="RayCast2D" parent="Rays"]
-scale = Vector2(1, 1)
-target_position = Vector2(130, -20)
+target_position = Vector2(160, -20)
 collision_mask = 8
-hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCast3" type="RayCast2D" parent="Rays"]
-target_position = Vector2(160, 20)
+target_position = Vector2(142.5, 20)
 collision_mask = 8
-hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCast4" type="RayCast2D" parent="Rays"]
-target_position = Vector2(50, 60)
+target_position = Vector2(20, 80)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
