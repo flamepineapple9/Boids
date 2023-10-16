@@ -9,6 +9,7 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+#Make a new rect 2d size of obstacle, use has_point() to determine if boid spawnPoint is inside an obstacle
 func _physics_process(delta):
 	if Input.is_action_just_pressed("start"):
 		for i in range(boids):
