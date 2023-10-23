@@ -33,3 +33,12 @@ func _on_square_area_entered(area):
 	boidInstance.rotation_degrees = randf_range(-360,360)
 	get_parent().add_child(boidInstance)
 	area.queue_free()
+
+
+func _on_circle_area_entered(area):
+	var boidInstance = boidLoad.instantiate()
+	boidInstance.position.x = randi_range(0,get_viewport_rect().size.x)
+	boidInstance.position.y = randi_range(0,get_viewport_rect().size.y)
+	boidInstance.rotation_degrees = randf_range(-360,360)
+	get_parent().add_child(boidInstance)
+	area.queue_free()

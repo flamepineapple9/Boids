@@ -8,7 +8,7 @@ size = Vector2(10.6249, 30.234)
 [node name="Boid" type="Area2D"]
 scale = Vector2(0.4, 0.4)
 collision_layer = 129
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_8jj53")
 
 [node name="Sprite" type="Polygon2D" parent="."]
@@ -21,7 +21,6 @@ rotation = 1.57079
 shape = SubResource("RectangleShape2D_otun3")
 
 [node name="Vision" type="Area2D" parent="."]
-visible = false
 rotation = 1.57079
 collision_layer = 2
 
@@ -32,25 +31,25 @@ polygon = PackedVector2Array(-15.3847, 15.3845, 0.000144793, -23.0769, 15.3845, 
 [node name="Rays" type="Node2D" parent="."]
 
 [node name="RayCast" type="RayCast2D" parent="Rays"]
-target_position = Vector2(20, -80)
+target_position = Vector2(20, -50)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCast2" type="RayCast2D" parent="Rays"]
-target_position = Vector2(160, -20)
+target_position = Vector2(180, -20)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCast3" type="RayCast2D" parent="Rays"]
-target_position = Vector2(142.5, 20)
+target_position = Vector2(180, 20)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="RayCast4" type="RayCast2D" parent="Rays"]
-target_position = Vector2(20, 80)
+target_position = Vector2(20, 50)
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false

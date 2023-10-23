@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://co6p8x760jht8"]
+[gd_scene load_steps=5 format=3 uid="uid://co6p8x760jht8"]
 
 [ext_resource type="PackedScene" uid="uid://sctgbhlvut3f" path="res://Scenes/UI.tscn" id="1_h8k0h"]
 [ext_resource type="Script" path="res://scripts/FlockSpawner.gd" id="2_3dd4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23jxf"]
 size = Vector2(160, 160)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lv6a"]
+radius = 200.0
 
 [node name="Main" type="Node2D"]
 
@@ -16,8 +19,9 @@ script = ExtResource("2_3dd4g")
 [node name="Obstacles" type="Node2D" parent="flockSpawner"]
 
 [node name="Square" type="Area2D" parent="flockSpawner/Obstacles"]
-position = Vector2(754, 425)
-scale = Vector2(2.19629, 1.4795)
+position = Vector2(528, 416)
+rotation = 0.4227
+scale = Vector2(0.916288, 2.85977)
 collision_layer = 8
 collision_mask = 128
 
@@ -29,64 +33,17 @@ shape = SubResource("RectangleShape2D_23jxf")
 color = Color(0.203922, 0.203922, 0.203922, 1)
 polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
 
-[node name="Square2" type="Area2D" parent="flockSpawner/Obstacles"]
-position = Vector2(383, 748)
-scale = Vector2(2.19629, 1.4795)
+[node name="Circle" type="Area2D" parent="flockSpawner/Obstacles"]
+position = Vector2(1183, 593)
 collision_layer = 8
 collision_mask = 128
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square2"]
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_23jxf")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Circle"]
+shape = SubResource("CircleShape2D_8lv6a")
 
-[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square2"]
+[node name="CollisionPolygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Circle"]
 color = Color(0.203922, 0.203922, 0.203922, 1)
-polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
-
-[node name="Square3" type="Area2D" parent="flockSpawner/Obstacles"]
-position = Vector2(258, 259)
-scale = Vector2(2.19629, 1.4795)
-collision_layer = 8
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square3"]
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_23jxf")
-
-[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square3"]
-color = Color(0.203922, 0.203922, 0.203922, 1)
-polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
-
-[node name="Square4" type="Area2D" parent="flockSpawner/Obstacles"]
-position = Vector2(1286, 302)
-scale = Vector2(2.19629, 1.4795)
-collision_layer = 8
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square4"]
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_23jxf")
-
-[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square4"]
-color = Color(0.203922, 0.203922, 0.203922, 1)
-polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
-
-[node name="Square5" type="Area2D" parent="flockSpawner/Obstacles"]
-position = Vector2(1211, 694)
-scale = Vector2(2.19629, 1.4795)
-collision_layer = 8
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="flockSpawner/Obstacles/Square5"]
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_23jxf")
-
-[node name="Polygon2D" type="Polygon2D" parent="flockSpawner/Obstacles/Square5"]
-color = Color(0.203922, 0.203922, 0.203922, 1)
-polygon = PackedVector2Array(-80, -80, 80, -80, 80, 80, -80, 80)
+polygon = PackedVector2Array(-1, -201, 48, -194, 100, -172, 140, -142, 172, -101, 194, -50, 200, -3, 192, 52, 173, 101, 142, 141, 103, 172, 54, 192, -1, 200, -54, 193, -100, 173, -143, 140, -174, 100, -193, 52, -200, -1, -193, -52, -173, -100, -141, -142, -99, -174, -52, -193)
 
 [connection signal="area_entered" from="flockSpawner/Obstacles/Square" to="flockSpawner" method="_on_square_area_entered"]
-[connection signal="area_entered" from="flockSpawner/Obstacles/Square2" to="flockSpawner" method="_on_square_area_entered"]
-[connection signal="area_entered" from="flockSpawner/Obstacles/Square3" to="flockSpawner" method="_on_square_area_entered"]
-[connection signal="area_entered" from="flockSpawner/Obstacles/Square4" to="flockSpawner" method="_on_square_area_entered"]
-[connection signal="area_entered" from="flockSpawner/Obstacles/Square5" to="flockSpawner" method="_on_square_area_entered"]
+[connection signal="area_entered" from="flockSpawner/Obstacles/Circle" to="flockSpawner" method="_on_circle_area_entered"]

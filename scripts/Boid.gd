@@ -95,12 +95,11 @@ func obstacle():
 	
 	if $Rays/RayCast.is_colliding():
 		c += ($Rays/RayCast.position - $Rays/RayCast.target_position).rotated(rotation)
-	if $Rays/RayCast2.is_colliding():
+	elif $Rays/RayCast2.is_colliding():
 		c += ($Rays/RayCast2.position - $Rays/RayCast2.target_position).rotated(rotation)
-	if $Rays/RayCast3.is_colliding():
+	elif $Rays/RayCast3.is_colliding():
 		c += ($Rays/RayCast3.position - $Rays/RayCast3.target_position).rotated(rotation)
-	if $Rays/RayCast4.is_colliding():
+	elif $Rays/RayCast4.is_colliding():
 		c += ($Rays/RayCast4.position - $Rays/RayCast4.target_position).rotated(rotation)
 	
-	return c/400
-
+	return c/200
